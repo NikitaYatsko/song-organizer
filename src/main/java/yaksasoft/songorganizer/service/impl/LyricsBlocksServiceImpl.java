@@ -38,6 +38,6 @@ public class LyricsBlocksServiceImpl implements LyricsBlocksService {
 
     @Override
     public List<LyricsBlockResponse> getAll(Long projectId) {
-        return lyricsBlocksRepository.findAll().stream().map(lyricsBlockMapper::toResponse).toList();
+        return lyricsBlocksRepository.findAllByProjectId(projectId).stream().map(lyricsBlockMapper::toResponse).toList();
     }
 }
