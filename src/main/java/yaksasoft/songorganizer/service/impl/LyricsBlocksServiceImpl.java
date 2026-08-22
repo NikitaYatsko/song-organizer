@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import yaksasoft.songorganizer.entity.LyricsBlock;
 import yaksasoft.songorganizer.entity.Project;
 import yaksasoft.songorganizer.entity.dto.request.LyricsBlockCreateRequest;
+import yaksasoft.songorganizer.entity.dto.request.LyricsBlockUpdateRequest;
 import yaksasoft.songorganizer.entity.dto.response.LyricsBlockResponse;
 import yaksasoft.songorganizer.mapper.LyricsBlockMapper;
 import yaksasoft.songorganizer.repository.LyricsBlocksRepository;
@@ -32,8 +33,21 @@ public class LyricsBlocksServiceImpl implements LyricsBlocksService {
 
     @Override
     public LyricsBlockResponse getById(Long blockId, Long projectId) {
-        Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException("Project not found"));
-        return null;
+        return lyricsBlocksRepository.findByIdAndProjectId(blockId, projectId).map(lyricsBlockMapper::toResponse)
+                .orElseThrow(() -> new EntityNotFoundException("Project not found"));
+    }
+
+    @Override
+    public LyricsBlockResponse update(Long blockId, LyricsBlockUpdateRequest request, Long projectId) {
+        LyricsBlock lyricsBlock = lyricsBlocksRepository
+                .findByIdAndProjectId(blockId, projectId)
+                .orElseThrow(() -> new EntityNotFoundException("Lyrics block not found"));
+
+        lyricsBlockMapper.updateEntity(lyricsBlock, request);
+
+        LyricsBlock updatedBlock = lyricsBlocksRepository.save(lyricsBlock);
+
+        return lyricsBlockMapper.toResponse(updatedBlock);
     }
 
     @Override
