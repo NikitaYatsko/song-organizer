@@ -3,9 +3,9 @@ package yaksasoft.songorganizer.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import yaksasoft.songorganizer.entity.dto.ProjectCreateRequest;
-import yaksasoft.songorganizer.entity.dto.ProjectResponse;
-import yaksasoft.songorganizer.entity.dto.ProjectStatusUpdateRequest;
+import yaksasoft.songorganizer.entity.dto.request.ProjectCreateRequest;
+import yaksasoft.songorganizer.entity.dto.response.ProjectResponse;
+import yaksasoft.songorganizer.entity.dto.request.ProjectStatusUpdateRequest;
 import yaksasoft.songorganizer.service.ProjectService;
 
 import java.net.URI;

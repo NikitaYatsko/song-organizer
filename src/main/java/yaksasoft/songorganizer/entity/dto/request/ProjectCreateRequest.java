@@ -1,4 +1,4 @@
-package yaksasoft.songorganizer.entity.dto;
+package yaksasoft.songorganizer.entity.dto.request;
 
 import yaksasoft.songorganizer.entity.enums.ProjectStatus;
 

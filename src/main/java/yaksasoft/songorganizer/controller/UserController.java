@@ -3,7 +3,7 @@ package yaksasoft.songorganizer.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import yaksasoft.songorganizer.entity.dto.UserResponse;
+import yaksasoft.songorganizer.entity.dto.response.UserResponse;
 import yaksasoft.songorganizer.service.UserService;
 
 import java.util.List;

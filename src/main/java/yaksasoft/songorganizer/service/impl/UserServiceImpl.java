@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import yaksasoft.songorganizer.entity.User;
-import yaksasoft.songorganizer.entity.dto.UserResponse;
+import yaksasoft.songorganizer.entity.dto.response.UserResponse;
 import yaksasoft.songorganizer.exception.UserNotFoundException;
 import yaksasoft.songorganizer.mapper.UserMapper;
 import yaksasoft.songorganizer.repository.UserRepository;

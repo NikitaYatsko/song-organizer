@@ -1,9 +1,8 @@
-package yaksasoft.songorganizer.entity.dto;
+package yaksasoft.songorganizer.entity.dto.response;
 
 import yaksasoft.songorganizer.entity.enums.ProjectStatus;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public record ProjectResponse(
         Long id,

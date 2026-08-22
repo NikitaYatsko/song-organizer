@@ -3,7 +3,7 @@ package yaksasoft.songorganizer.mapper;
 import org.springframework.stereotype.Component;
 import yaksasoft.songorganizer.entity.Project;
 
-import yaksasoft.songorganizer.entity.dto.ProjectResponse;
+import yaksasoft.songorganizer.entity.dto.response.ProjectResponse;
 
 
 @Component

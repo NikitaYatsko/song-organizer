@@ -7,9 +7,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import yaksasoft.songorganizer.entity.User;
-import yaksasoft.songorganizer.entity.dto.AuthResponse;
-import yaksasoft.songorganizer.entity.dto.LoginRequest;
-import yaksasoft.songorganizer.entity.dto.RegisterRequest;
+import yaksasoft.songorganizer.entity.dto.response.AuthResponse;
+import yaksasoft.songorganizer.entity.dto.request.LoginRequest;
+import yaksasoft.songorganizer.entity.dto.request.RegisterRequest;
 import yaksasoft.songorganizer.repository.UserRepository;
 import yaksasoft.songorganizer.service.jwt.JwtService;
 

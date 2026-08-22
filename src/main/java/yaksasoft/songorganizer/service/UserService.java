@@ -1,6 +1,6 @@
 package yaksasoft.songorganizer.service;
 
-import yaksasoft.songorganizer.entity.dto.UserResponse;
+import yaksasoft.songorganizer.entity.dto.response.UserResponse;
 
 import java.util.List;
 

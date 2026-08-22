@@ -1,4 +1,4 @@
-package yaksasoft.songorganizer.entity.dto;
+package yaksasoft.songorganizer.entity.dto.request;
 
 public record RegisterRequest(String email,
                               String username,

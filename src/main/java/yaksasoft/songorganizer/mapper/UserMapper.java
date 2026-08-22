@@ -2,7 +2,7 @@ package yaksasoft.songorganizer.mapper;
 
 import org.springframework.stereotype.Component;
 import yaksasoft.songorganizer.entity.User;
-import yaksasoft.songorganizer.entity.dto.UserResponse;
+import yaksasoft.songorganizer.entity.dto.response.UserResponse;
 
 @Component
 public class UserMapper {
