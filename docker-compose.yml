@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: music-organizer-db
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: music_organizer
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+    ports:
+      - "5438:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:
