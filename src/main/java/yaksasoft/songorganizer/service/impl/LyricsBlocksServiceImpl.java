@@ -32,12 +32,12 @@ public class LyricsBlocksServiceImpl implements LyricsBlocksService {
 
     @Override
     public LyricsBlockResponse getById(Long blockId, Long projectId) {
-       Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException("Project not found"));
-return null;
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new EntityNotFoundException("Project not found"));
+        return null;
     }
 
     @Override
     public List<LyricsBlockResponse> getAll(Long projectId) {
-        return List.of();
+        return lyricsBlocksRepository.findAll().stream().map(lyricsBlockMapper::toResponse).toList();
     }
 }

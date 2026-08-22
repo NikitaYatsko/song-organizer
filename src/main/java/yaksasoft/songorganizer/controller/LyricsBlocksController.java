@@ -8,6 +8,8 @@ import yaksasoft.songorganizer.entity.dto.request.LyricsBlockCreateRequest;
 import yaksasoft.songorganizer.entity.dto.response.LyricsBlockResponse;
 import yaksasoft.songorganizer.service.LyricsBlocksService;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/projects/{projectId}/lyrics-blocks")
@@ -25,6 +27,10 @@ public class LyricsBlocksController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
+    }
+    @GetMapping
+    public ResponseEntity<List<LyricsBlockResponse>> getAll(@PathVariable Long projectId){
+        return ResponseEntity.ok(lyricsBlocksService.getAll(projectId)) ;
     }
 }
 
