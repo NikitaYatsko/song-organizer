@@ -90,10 +90,6 @@ public class ProjectServiceImpl implements ProjectService {
                 .toList();
     }
 
-    public void changeStatus(Long id){
-
-    }
-
     @Override
     @Transactional
     public void delete(Long id) {

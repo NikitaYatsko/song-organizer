@@ -2,6 +2,7 @@ package yaksasoft.songorganizer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import yaksasoft.songorganizer.entity.enums.ProjectStatus;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "projects" ,schema = "organizer_schema")
+@Table(name = "projects", schema = "organizer_schema")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,7 +31,7 @@ public class Project {
 
     @Column(name = "deadline")
     private LocalDateTime deadline;
-
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private LocalDateTime createdAt;
 

@@ -2,6 +2,7 @@ package yaksasoft.songorganizer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -32,7 +33,7 @@ public class User {
 
     @Column(name = "last_name", length = 128)
     private String lastName;
-
+@CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

@@ -2,11 +2,12 @@ package yaksasoft.songorganizer.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "lyrics_blocks",schema = "organizer_schema")
+@Table(name = "lyrics_blocks", schema = "organizer_schema")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,7 +31,7 @@ public class LyricsBlock {
 
     @Column(name = "block_order", nullable = false)
     private Integer blockOrder;
-
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
     private LocalDateTime createdAt;
 }
