@@ -1,4 +1,4 @@
-package yaksasoft.songorganizer.entity.controller;
+package yaksasoft.songorganizer.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

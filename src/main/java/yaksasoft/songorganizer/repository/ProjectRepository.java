@@ -3,5 +3,12 @@ package yaksasoft.songorganizer.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import yaksasoft.songorganizer.entity.Project;
 
-public interface ProjectRepository extends JpaRepository<Project,Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+
+    List<Project> findAllByOwnerId(Long ownerId);
+
+    Optional<Project> findByIdAndOwnerId(Long id, Long ownerId);
 }
