@@ -31,18 +31,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     @Transactional
     public ProjectResponse create(ProjectCreateRequest request) {
-
-        User user = getCurrentUser();
+        User currentUser = getCurrentUser();
 
         Project project = Project.builder()
                 .projectName(request.projectName())
-                .status(
-                        request.status() == null
-                                ? ProjectStatus.IDEA
-                                : request.status()
-                )
+                .status(request.status() == null
+                        ? ProjectStatus.IDEA
+                        : request.status())
                 .deadline(request.deadline())
-                .owner(user)
+                .owner(currentUser)
                 .createdAt(LocalDateTime.now())
                 .build();
 
@@ -53,26 +50,19 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional(readOnly = true)
-    public ProjectResponse getById(Long id) {
-
-        User user = getCurrentUser();
-
-        Project project = projectRepository
-                .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
+    public ProjectResponse getById(Long projectId) {
+        Project project = getOwnedProject(projectId);
 
         return projectMapper.toResponse(project);
     }
 
-    @Transactional
     @Override
-    public ProjectResponse updateStatus(ProjectStatus status, Long id) {
-
-        User user = getCurrentUser();
-
-        Project project = projectRepository
-                .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
+    @Transactional
+    public ProjectResponse updateStatus(
+            ProjectStatus status,
+            Long projectId
+    ) {
+        Project project = getOwnedProject(projectId);
 
         project.setStatus(status);
 
@@ -82,10 +72,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     @Transactional(readOnly = true)
     public List<ProjectResponse> getAll() {
+        User currentUser = getCurrentUser();
 
-        User user = getCurrentUser();
-
-        return projectRepository.findAllByOwnerId(user.getId())
+        return projectRepository.findAllByOwnerId(currentUser.getId())
                 .stream()
                 .map(projectMapper::toResponse)
                 .toList();
@@ -93,25 +82,32 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional
-    public void delete(Long id) {
-
-        User user = getCurrentUser();
-
-        Project project = projectRepository
-                .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
+    public void delete(Long projectId) {
+        Project project = getOwnedProject(projectId);
 
         projectRepository.delete(project);
     }
 
-    private User getCurrentUser() {
+    @Transactional(readOnly = true)
+    @Override
+    public Project getOwnedProject(Long projectId) {
+        User currentUser = getCurrentUser();
 
-        String email = SecurityContextHolder
-                .getContext()
+        return projectRepository
+                .findByIdAndOwnerId(projectId, currentUser.getId())
+                .orElseThrow(() -> new ProjectNotFoundException(
+                        ErrorMessages.PROJECT_NOT_FOUND.getMessage()
+                ));
+    }
+
+    private User getCurrentUser() {
+        String email = SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getName();
 
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException(ErrorMessages.USER_NOT_FOUND.getMessage()));
+                .orElseThrow(() -> new UserNotFoundException(
+                        ErrorMessages.USER_NOT_FOUND.getMessage()
+                ));
     }
 }
