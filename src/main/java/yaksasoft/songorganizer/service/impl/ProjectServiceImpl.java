@@ -8,6 +8,7 @@ import yaksasoft.songorganizer.entity.Project;
 import yaksasoft.songorganizer.entity.User;
 import yaksasoft.songorganizer.entity.dto.request.ProjectCreateRequest;
 import yaksasoft.songorganizer.entity.dto.response.ProjectResponse;
+import yaksasoft.songorganizer.entity.enums.ErrorMessages;
 import yaksasoft.songorganizer.entity.enums.ProjectStatus;
 import yaksasoft.songorganizer.exception.ProjectNotFoundException;
 import yaksasoft.songorganizer.exception.UserNotFoundException;
@@ -58,7 +59,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         Project project = projectRepository
                 .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(id));
+                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
 
         return projectMapper.toResponse(project);
     }
@@ -71,7 +72,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         Project project = projectRepository
                 .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(id));
+                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
 
         project.setStatus(status);
 
@@ -98,7 +99,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         Project project = projectRepository
                 .findByIdAndOwnerId(id, user.getId())
-                .orElseThrow(() -> new ProjectNotFoundException(id));
+                .orElseThrow(() -> new ProjectNotFoundException(ErrorMessages.PROJECT_NOT_FOUND.getMessage()));
 
         projectRepository.delete(project);
     }
@@ -111,6 +112,6 @@ public class ProjectServiceImpl implements ProjectService {
                 .getName();
 
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException(email));
+                .orElseThrow(() -> new UserNotFoundException(ErrorMessages.USER_NOT_FOUND.getMessage()));
     }
 }

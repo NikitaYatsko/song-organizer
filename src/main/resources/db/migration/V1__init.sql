@@ -16,7 +16,7 @@ CREATE TABLE projects
     status       VARCHAR(32)  NOT NULL DEFAULT 'IDEA',
     deadline     TIMESTAMP,
     created_at   TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    owner_id     BIGINT       NOT NULL REFERENCES users (id)
+    owner_id     BIGINT       NOT NULL REFERENCES users (id) on delete cascade 
 );
 CREATE TABLE lyrics_blocks
 (

@@ -1,9 +1,7 @@
 package yaksasoft.songorganizer.exception;
 
-
-public class ProjectNotFoundException extends RuntimeException {
-
-    public ProjectNotFoundException(Long id) {
-        super("Project with id " + id + " not found");
-    }
+public class ProjectNotFoundException extends NotFoundException {
+  public ProjectNotFoundException(String message) {
+    super(message);
+  }
 }

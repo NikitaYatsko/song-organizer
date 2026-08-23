@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import yaksasoft.songorganizer.entity.User;
 import yaksasoft.songorganizer.entity.dto.response.UserResponse;
+import yaksasoft.songorganizer.entity.enums.ErrorMessages;
 import yaksasoft.songorganizer.exception.UserNotFoundException;
 import yaksasoft.songorganizer.mapper.UserMapper;
 import yaksasoft.songorganizer.repository.UserRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse getById(Long id) {
 
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new UserNotFoundException(ErrorMessages.USER_NOT_FOUND.getMessage()));
 
         return userMapper.toResponse(user);
     }
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
 
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -> new UserNotFoundException(ErrorMessages.USER_NOT_FOUND.getMessage()));
 
         userRepository.delete(user);
     }
