@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users",schema = "organizer_schema")
+@Table(name = "users", schema = "organizer_schema")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,7 +33,13 @@ public class User {
 
     @Column(name = "last_name", length = 128)
     private String lastName;
-@CreationTimestamp
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "image_url", length = 255)
+    private String imageUrl;
+
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 

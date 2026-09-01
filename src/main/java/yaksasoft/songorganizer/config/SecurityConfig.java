@@ -1,4 +1,4 @@
-package yaksasoft.songorganizer.entity.config;
+package yaksasoft.songorganizer.config;
 
 
 import lombok.RequiredArgsConstructor;
