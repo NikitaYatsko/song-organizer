@@ -1,6 +1,7 @@
 package yaksasoft.songorganizer.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,8 +20,8 @@ public class CurrentUserController {
         return ResponseEntity.ok(userService.getCurrentUserProfile());
     }
 
-    @PostMapping("/profile-photo")
-    public ResponseEntity<Void>  uploadProfilePhoto(@RequestBody MultipartFile file) {
+    @PostMapping(value = "/profile-photo", consumes =MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void>  uploadProfilePhoto(@RequestParam("file") MultipartFile file) {
        userService.uploadProfilePhoto(file);
        return ResponseEntity.ok().build();
     }
